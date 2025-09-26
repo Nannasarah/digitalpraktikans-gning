@@ -10,30 +10,24 @@ burger.addEventListener("click", () => {
 });
 
 // ------------------- TIDLIGERE PROJEKTER: FLYV IND -------------------
-
 document.addEventListener("DOMContentLoaded", () => {
   const projects = document.querySelectorAll(".projekt");
 
-  // Opret IntersectionObserver til at opdage, når projekter kommer ind i viewport
   const observer = new IntersectionObserver(
     (entries, observer) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          // Find index på projektet (til stagger-effekt)
-          const index = Array.from(projects).indexOf(entry.target);
-          // Tilføj class "visible" med en lille delay baseret på index
+          // Tilføj class "visible" med fast delay (fx 100ms)
           setTimeout(() => {
             entry.target.classList.add("visible");
-          }, index * 200);
-          // Stop observering af elementet efter det er synligt
+          }, 100);
           observer.unobserve(entry.target);
         }
       });
     },
-    { threshold: 0.1 } // Trigger når 10% af elementet er synligt
+    { threshold: 0.1 }
   );
 
-  // Start observering af hvert projekt
   projects.forEach((proj) => observer.observe(proj));
 });
 
