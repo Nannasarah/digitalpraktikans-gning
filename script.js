@@ -17,10 +17,10 @@ document.addEventListener("DOMContentLoaded", () => {
     (entries, observer) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          // Tilføj class "visible" med fast delay (fx 100ms)
+          const index = Array.from(projects).indexOf(entry.target); // korrekt index i hele listen
           setTimeout(() => {
             entry.target.classList.add("visible");
-          }, 100);
+          }, index * 200); // 200ms mellem hvert projekt
           observer.unobserve(entry.target);
         }
       });
@@ -30,7 +30,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   projects.forEach((proj) => observer.observe(proj));
 });
-
 // -------------------------- SKIFT TEMA ------------------------------
 document.addEventListener("DOMContentLoaded", () => {
   const select = document.querySelector(".theme");

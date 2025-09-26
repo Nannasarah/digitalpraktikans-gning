@@ -765,4 +765,7 @@ footer p {
   .navn {
     margin-left: 170px;
   }
+  .nanna a {
+    left: 31%;
+  }
 }
