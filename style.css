@@ -1,0 +1,768 @@
+* {
+  margin: 0;
+  padding: 0px;
+  box-sizing: border-box;
+}
+html {
+  scroll-behavior: smooth;
+}
+img {
+  width: 100%;
+  display: block;
+  object-fit: cover;
+  align-self: stretch;
+  padding: 0rem;
+}
+h1 {
+  font-family: "Red Hat Text";
+  color: #431818;
+}
+h2,
+h3 {
+  font-family: Pavanam, sans-serif;
+  color: #431818;
+}
+li {
+  font-family: Pavanam, sans-serif;
+  color: #431818;
+  transition: scale 0.5s ease;
+  transition: color 0.3s ease;
+}
+
+p {
+  font-family: Pavanam, sans-serif;
+  color: #431818;
+}
+a {
+  font-family: Pavanam, sans-serif;
+  color: #ff7f00;
+  transition: color 0.3s ease;
+}
+body {
+  background: linear-gradient(0deg, #faca99, #fff9f1);
+  overflow-x: hidden;
+  cursor: default;
+}
+
+/* =============== DARK THEME =============== */
+body[data-theme="dark"] {
+  /* baggrund */
+  background: linear-gradient(0deg, #000000, #272727);
+}
+
+/* typografi i mørk tema */
+body[data-theme="dark"] h1,
+body[data-theme="dark"] h2,
+body[data-theme="dark"] h3,
+body[data-theme="dark"] li,
+body[data-theme="dark"] p {
+  color: #fff9f1;
+}
+
+body[data-theme="dark"] a {
+  color: #431818; /* links i mørk tema */
+}
+body[data-theme="dark"] .nanna a:hover {
+  color: #431818; /* links i mørk tema */
+}
+
+/* header og select */
+body[data-theme="dark"] header label {
+  color: #c4e6ff;
+}
+body[data-theme="dark"] select.theme {
+  background-color: #353535;
+  padding: 0.5rem 2rem 0.5rem 0.5rem;
+  color: #c4e6ff;
+}
+
+/* burger menu i mørk */
+body[data-theme="dark"] .burger .line {
+  background: #c4e6ff;
+}
+body[data-theme="dark"] .menu li a {
+  color: #c4e6ff;
+}
+body[data-theme="dark"] .menu li a:hover {
+  color: #ff7f00;
+}
+
+/* #praktik sektionen i mørk */
+body[data-theme="dark"] #praktik {
+  background-color: #353535;
+}
+body[data-theme="dark"] #praktik h1 {
+  color: #ff7f00;
+}
+
+body[data-theme="dark"] #praktik p {
+  color: #fff9f1;
+}
+
+body[data-theme="dark"] .nanna a:hover + img {
+  filter: drop-shadow(30px 20px 0px #c4e6ff);
+}
+
+/* kompetencer bokse */
+body[data-theme="dark"] .kom {
+  background-color: #353535;
+  color: #f5f5f5;
+}
+body[data-theme="dark"] .kom ul li {
+  color: #f5f5f5;
+}
+body[data-theme="dark"] .kom ul li:hover {
+  color: #ff7f00;
+}
+
+/* projekter */
+body[data-theme="dark"] #projekter .projekt {
+  background: #353535;
+  color: #f5f5f5;
+}
+body[data-theme="dark"] #projekter .projekt a:hover {
+  color: #ff7f00;
+}
+
+/* footer */
+body[data-theme="dark"] footer {
+  background: #ff7f00;
+}
+body[data-theme="dark"] footer p,
+body[data-theme="dark"] footer a {
+  color: #431818;
+}
+
+/****************** HEADER ********************************/
+header {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-template-rows: 1fr 1fr;
+  margin-inline: 5%;
+  display: flex;
+  justify-content: space-between;
+}
+header .logo {
+  grid-column: 1;
+  grid-row: 1/3;
+}
+header label {
+  grid-column: 2;
+  grid-row: 1;
+  justify-self: end;
+  padding-top: 1em;
+  font-family: Pavanam, sans-serif;
+  color: #ff7f00;
+}
+select.theme {
+  appearance: none; /* fjerner browserens standardpilen */
+  -webkit-appearance: none; /* Safari */
+  -moz-appearance: none; /* Firefox */
+
+  background-color: fff9f1;
+  color: #ff7f00;
+  border: none;
+  border-radius: 6px;
+  padding: 0.5rem 2rem 0.5rem 0.5rem; /* plads til egen pil til højre */
+  font-size: 1rem;
+  background-image: url("img/arrow-down.svg"); /* din egen pil */
+  background-repeat: no-repeat;
+  background-position: right 0.5rem center;
+  background-size: 1rem;
+  background-color: #fffefc;
+}
+
+/* nav og menu */
+nav {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  padding: 1rem;
+}
+
+.menu {
+  display: flex;
+  list-style: none;
+  gap: 2rem;
+  z-index: 900; /* lavere end footerens 1000 */
+}
+
+.menu li a {
+  text-decoration: none;
+  color: #000;
+}
+
+/* Burger styling */
+body.menu-open {
+  overflow-x: hidden;
+}
+.burger {
+  display: none; /* skjul på desktop */
+  flex-direction: column;
+  cursor: pointer;
+  gap: 5px;
+}
+
+.burger .line {
+  width: 25px;
+  height: 3px;
+  background: #ff7f00;
+}
+
+/*menu til mobil */
+@media (max-width: 768px) {
+  header {
+    display: grid;
+    grid-template-columns: auto auto; /* tre kolonner */
+    grid-template-rows: 1fr;
+  }
+  .menutema {
+    display: flex;
+    flex-direction: column; /* stabler nav og label lodret */
+    height: 100%;
+  }
+  nav {
+    padding-bottom: 55px;
+  }
+  label {
+    padding-top: 30px;
+  }
+
+  .menu {
+    position: fixed;
+    top: 100px;
+    right: 0;
+    background: #fff;
+    flex-direction: column;
+    width: 200px;
+    padding: 1rem;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    display: grid;
+    grid-row: 2;
+    grid-column: 2;
+    border-bottom: solid 5px #ff7f00;
+    border-radius: 10px;
+  }
+
+  .menu.active {
+    transform: translateX(0);
+  }
+
+  .burger {
+    display: flex;
+  }
+
+  /* Burger til kryds når aktiv */
+  .burger.active .line:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+  }
+
+  .burger.active .line:nth-child(2) {
+    opacity: 0;
+  }
+
+  .burger.active .line:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+  }
+}
+
+/****************** STARTSEKTION ********************************/
+
+.start {
+  display: grid;
+  padding-top: 40px;
+  text-align: center;
+  justify-items: center;
+}
+
+.start img {
+  width: 300px;
+  object-fit: cover;
+  display: block;
+  padding-top: 0;
+  margin-top: 0;
+}
+.nanna {
+  display: grid;
+  grid-template-columns: 1fr 2fr 2fr;
+  grid-template-rows: 1fr;
+}
+.nanna img {
+  grid-column: 2/4;
+  grid-row: 1/2;
+  padding-left: 30px;
+  filter: drop-shadow(30px 20px 0px #ff7f00);
+  z-index: -2000;
+}
+.nanna a {
+  margin-top: 120%;
+  grid-column: 1/3;
+  grid-row: 1/2;
+  font-size: 1.5rem;
+  z-index: 2000;
+  padding-inline: auto;
+  color: #270e0e;
+  background-color: #ff7f00;
+  margin-bottom: auto;
+  opacity: 100%;
+  padding: 10px;
+  border-radius: 10px;
+  transition: background-color 0.5s ease;
+  transition: scale 0.5s ease;
+}
+.nanna a:hover {
+  scale: 1.05;
+  font-weight: 900;
+  background-color: #c4e6ff;
+  color: #270e0e;
+}
+.nanna a:hover + img {
+  filter: drop-shadow(30px 20px 0px #c4e6ff);
+}
+
+/****************** PRAKTIK SEKTION ********************************/
+#praktik {
+  background-color: #ff7f00;
+  padding-inline: 15%;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  display: grid;
+  gap: 20px;
+}
+#praktik h1 {
+  color: #fff;
+}
+#praktik p {
+  color: #fff;
+}
+.light {
+  font-weight: 100;
+  font-size: 2rem;
+}
+#praktik h1 {
+  font-size: 2.5rem;
+}
+
+/****************** KOMPETENCER SEKTION ********************************/
+
+#kompetencer {
+  padding-inline: 15%;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+#kompetencer h2 {
+  font-size: 2.5rem;
+  text-align: center;
+}
+.kompetencerne {
+  display: grid;
+  gap: 30px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  width: 78%;
+  margin-inline: auto;
+}
+.kompetencerne h3 {
+  font-size: 1.5rem;
+  padding-bottom: 10px;
+  text-align: center;
+}
+.kom {
+  background-color: #fffefc;
+  padding: 20px;
+  border-radius: 20px;
+}
+
+ul li {
+  margin-bottom: 10px;
+}
+.kom ul {
+  margin-left: 10%;
+}
+
+/****************** TIDLIGERE PROJEKTER SEKTION ********************************/
+.projekt {
+  opacity: 0;
+  transform: translateX(0);
+  transition: transform 0.8s ease, opacity 0.8s ease;
+  width: 100%;
+}
+
+/* Når synlig */
+.projekt.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+#projekter {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+#projekter {
+  padding-bottom: 300px;
+}
+
+#projekter h2 {
+  text-align: center;
+  font-size: 2.5rem;
+}
+
+/* Billeder */
+#projekter .pimg {
+  width: 90%;
+  height: auto;
+  border-radius: 8px;
+  transition: transform 0.3s ease;
+  margin-left: auto;
+  margin-right: auto;
+}
+#projekter .pimg:hover {
+  transform: scale(1.05);
+}
+
+/* Projektkort styling */
+#projekter .projekt {
+  background: #c4e6ff;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  padding: 1rem;
+  text-align: center;
+  transition: transform 0.2s ease;
+}
+
+#projekter .projekt h3 {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+#projekter .projekt a::after {
+  padding-top: 20px;
+  content: "klik for at gå til site";
+}
+/****************** FOOTER ********************************/
+
+footer {
+  position: fixed; /* altid fast i forhold til viewport */
+  bottom: 0; /* placeret i bunden */
+  left: 0; /* fylder hele bredden fra venstre */
+  width: 100%; /* 100% bredde */
+  padding: 20px;
+  display: grid; /* hvis du vil lave kolonner i footeren */
+  grid-template-columns: 1fr 1fr 1fr;
+  text-align: center;
+  align-items: center;
+  z-index: 3000;
+  background: #c4e6ff;
+  overflow-x: hidden;
+  opacity: 90%;
+  padding: 0;
+  padding-bottom: 10px;
+  padding-top: 5px;
+  object-fit: contain;
+}
+footer p {
+  font-family: "Red Hat Text";
+}
+.kontakt {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+.kontakt img {
+  height: 40px;
+  object-fit: contain;
+  display: block;
+}
+
+/* Responsive til computer */
+@media (min-width: 900px) {
+  /****************** header ********************************/
+  header {
+    margin-inline: 0;
+    padding-inline: 10%;
+    padding-top: 20px;
+    height: 150px;
+    position: relative;
+  }
+  .menu a {
+    font-size: 1.2rem;
+  }
+  .menu li {
+    transition: scale ease;
+  }
+  .menu li :hover {
+    color: #ff7f00;
+    scale: 1.1;
+  }
+  .menutema {
+    display: flex;
+    flex-direction: column;
+  }
+  .menutema label {
+    margin-left: auto;
+  }
+  .logo {
+    height: 100%;
+    max-height: 150px;
+    min-height: 80px;
+    object-fit: contain;
+    width: auto;
+    /* position: sticky; */
+    top: 10px;
+
+    position: fixed;
+    top: 10px;
+  }
+
+  /* Sørg for, at logo har transition i normal state */
+  .logo {
+    transition: transform 0.3s ease;
+  }
+
+  /****************** start ********************************/
+  .start {
+    display: grid;
+    grid-template-columns: 2fr 1fr; /* venstre: navn, højre: nanna */
+    grid-template-rows: auto;
+    padding-top: 0;
+    position: relative; /* gør at absolute børn kan placeres i venstre kolonne */
+  }
+
+  .navn {
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+    position: relative; /* reference for link */
+    padding-top: 60px;
+  }
+  .navn h1 {
+    font-size: 3rem;
+    padding-left: 80px;
+  }
+  .nanna {
+    padding-right: 70px;
+  }
+  .navn h3 {
+    font-size: 1.8rem;
+    margin-left: 10%;
+  }
+  /* Linket fra .nanna placeres visuelt i venstre kolonne */
+  .nanna a {
+    position: absolute; /* løftes ud af .nanna */
+    top: 60%; /* lige under h1/h3 i .navn */
+    left: 28%;
+    font-size: 1.2rem;
+    padding: 10px;
+    background-color: #ff7f00;
+    color: #270e0e;
+    border-radius: 10px;
+    z-index: 1000;
+    margin-top: 0;
+  }
+
+  /* Billedet fylder højre kolonne */
+  .nanna img {
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
+    height: 400px;
+    object-fit: contain;
+    filter: drop-shadow(30px 20px 0px #ff7f00);
+    transition: filter 0.3s ease;
+  }
+
+  /* Drop-shadow når link hover */
+  .nanna a:hover ~ img {
+    filter: drop-shadow(30px 20px 0px #c4e6ff);
+  }
+  /****************** praktik ********************************/
+
+  #praktik {
+    margin-top: 0px;
+    padding-top: 80px;
+    padding-bottom: 100px;
+    gap: 30px;
+    padding-inline: 0%;
+    padding-left: 15%;
+  }
+  #praktik p {
+    padding-right: 40%;
+    font-size: 1.3rem;
+  }
+  #praktik h1 {
+    font-size: 3rem;
+  }
+  .ph1 {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+  }
+  .light {
+    padding-left: 30px;
+  }
+  /****************** kompetencer ********************************/
+
+  .kompetencerne {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 70px;
+    width: 94%;
+  }
+  .kom {
+    margin-top: 5px;
+    transition: border-bottom 0.5s ease;
+    margin-bottom: 100px;
+  }
+  .kom h3 {
+    font-size: 2rem;
+  }
+  .kom ul {
+    padding-inline: 10%;
+  }
+  .kom ul li {
+    font-size: 1.3rem;
+  }
+  .kom ul :hover {
+    color: #ff7f00;
+  }
+  #kompetencer {
+    margin-top: 70px;
+  }
+  #kompetencer h2 {
+    transition: background-color 0.3s ease, color 0.3s ease;
+    padding: 0.5rem 1rem; /* lidt luft så farven fylder */
+    transition: text-decoration 0.5s ease;
+  }
+
+  #kompetencer:hover h2 {
+    text-decoration: underline #c4e6ff;
+  }
+  #kompetencer:hover .kom {
+    border-bottom: solid #c4e6ff 10px; /* baggrundsfarve ved hover */
+  }
+
+  /****************** projekter ********************************/
+
+  #projekter {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    position: relative;
+    padding-inline: 10%;
+    padding-bottom: 170px;
+  }
+
+  #projekter h2 {
+    position: sticky;
+    top: 10%;
+    z-index: 2000;
+  }
+  #projekter:hover h2 {
+    color: #fff;
+    background-color: #ff7f00;
+    margin-inline: 30%;
+    border-radius: 10px;
+    opacity: 80%;
+    transition: background-color 0.5s ease;
+    /* text-shadow: 0px 0px 10px #272727; */
+  }
+  #projekter {
+    background-color: initial; /* fx hvid eller hvad du har */
+    transition: background-color 3s ease; /* overgang på 0.5 sekunder */
+  }
+
+  #projekter:hover .projekt {
+    transform: scale(1.02);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, filter 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  /* Gør link position: relative så overlay kan placeres */
+  #projekter .projekt a {
+    position: relative;
+    display: inline-block;
+  }
+
+  /* Selve overlayen – skjult som standard */
+  #projekter .projekt a::after {
+    content: "Gå til site";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    background: #ff7f00;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none; /* så hover stadig fanger linket */
+    font-weight: bold;
+    font-size: 1rem;
+    text-align: center;
+  }
+
+  /* Når man hover over billedet/link */
+  #projekter .projekt a:hover::after {
+    opacity: 1;
+  }
+
+  /* Billede bliver blur som før */
+  #projekter .projekt img:hover {
+    filter: blur(3px);
+    transition: filter 0.3s ease;
+  }
+  #projekter .projekt:hover {
+    transform: scale(1.2);
+    transition: transform 0.3s ease;
+  }
+  .projekt {
+    width: 45%;
+    position: relative;
+    transition: transform 0.8s ease, opacity 0.8s ease;
+    margin-bottom: -50px;
+  }
+
+  /* Zigzag: start udenfor skærm */
+  .projekt:nth-child(odd) {
+    transform: translateX(-100%); /* venstre udenfor */
+    margin-left: 0; /* venstre */
+  }
+
+  .projekt:nth-child(even) {
+    transform: translateX(120%); /* højre udenfor */
+  }
+  .projekt:nth-child(odd).visible {
+    margin-left: 0; /* venstre */
+  }
+
+  .projekt:nth-child(even).visible {
+    margin-left: auto; /* højre */
+  }
+
+  /* Når synlig */
+  .projekt.visible {
+    transform: translateX(0); /* flyv ind på plads */
+    opacity: 1;
+  }
+  #projekter .projekt h3 {
+    font-size: 1.5rem;
+  }
+
+  footer {
+    font-size: 1.2rem;
+  }
+}
+
+@media (min-width: 1300px) {
+  .nanna {
+    padding-right: 300px;
+    display: grid;
+    grid-template-columns: 1fr;
+    object-fit: cover;
+  }
+  .start {
+    grid-template-columns: 3fr 2fr;
+  }
+  .navn {
+    margin-left: 170px;
+  }
+}
