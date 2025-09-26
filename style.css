@@ -597,6 +597,7 @@ footer p {
   }
   .light {
     padding-left: 30px;
+    font-size: 2.6rem;
   }
   /****************** kompetencer ********************************/
 
@@ -766,6 +767,6 @@ footer p {
     margin-left: 170px;
   }
   .nanna a {
-    left: 31%;
+    left: 31.5%;
   }
 }
